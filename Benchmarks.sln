@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benchmarks", "Benchmarks\Benchmarks.csproj", "{0E137A13-0DC6-4A47-9A3F-5225DB167E94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastListIteration", "FastListIteration\FastListIteration.csproj", "{4F62096F-D73B-45E8-B185-6C1D73247816}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqPerformance.Simple", "LinqPerformance.Simple\LinqPerformance.Simple.csproj", "{2B09BD68-670B-4871-A9FF-0F4C0F19B085}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E137A13-0DC6-4A47-9A3F-5225DB167E94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E137A13-0DC6-4A47-9A3F-5225DB167E94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E137A13-0DC6-4A47-9A3F-5225DB167E94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E137A13-0DC6-4A47-9A3F-5225DB167E94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F62096F-D73B-45E8-B185-6C1D73247816}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F62096F-D73B-45E8-B185-6C1D73247816}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F62096F-D73B-45E8-B185-6C1D73247816}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F62096F-D73B-45E8-B185-6C1D73247816}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B09BD68-670B-4871-A9FF-0F4C0F19B085}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B09BD68-670B-4871-A9FF-0F4C0F19B085}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B09BD68-670B-4871-A9FF-0F4C0F19B085}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B09BD68-670B-4871-A9FF-0F4C0F19B085}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
