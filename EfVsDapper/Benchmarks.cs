@@ -2,6 +2,7 @@
 using BenchmarkDotNet.Attributes;
 using Dapper;
 using EfVsDapper.Database;
+using Microsoft.Diagnostics.Runtime;
 
 namespace EfVsDapper;
 
@@ -45,28 +46,67 @@ VALUES (@Id, @Title, @YearOfRelease)", _testMovie);
         await _dbConnection.ExecuteAsync("DELETE FROM Movies WHERE Id = @Id", _testMovie);
     }
     
+    // [Benchmark]
+    // public Movie? EF_Find ()
+    // {
+    //     return _moviesContext.Movies.Find(_testMovie.Id);
+    // }
+    //
+    // [Benchmark]
+    // public Movie? EF_Single ()
+    // {
+    //     return _moviesContext.Movies.SingleOrDefault(x => x.Id == _testMovie.Id);
+    // }
+    //
+    // [Benchmark]
+    // public Movie? EF_First ()
+    // {
+    //     return _moviesContext.Movies.FirstOrDefault(x => x.Id == _testMovie.Id);
+    // }
+    //
+    // [Benchmark]
+    // public Movie? Dapper_GetById ()
+    // {
+    //     return _dbConnection.QuerySingleOrDefault<Movie>("SELECT * FROM Movies WHERE Id = @Id LIMIT 1",
+    //         new { _testMovie.Id });
+    // }
+
     [Benchmark]
-    public Movie? EF_Find ()
+    public Movie EF_Add_Delete ()
     {
-        return _moviesContext.Movies.Find(_testMovie.Id);
-    }
-    
-    [Benchmark]
-    public Movie? EF_Single ()
-    {
-        return _moviesContext.Movies.SingleOrDefault(x => x.Id == _testMovie.Id);
+        var movie = new Movie
+        {
+            Id = Guid.NewGuid(),
+            Title = "Test Movie2",
+            YearOfRelease = 2015
+        };
+
+        _moviesContext.Movies.Add(movie);
+        _moviesContext.SaveChanges();
+
+        _moviesContext.Movies.Remove(movie);
+        _moviesContext.SaveChanges();
+
+        return movie;
     }
 
     [Benchmark]
-    public Movie? EF_First ()
+    public Movie Dapper_Add_Delete ()
     {
-        return _moviesContext.Movies.FirstOrDefault(x => x.Id == _testMovie.Id);
+        var movie = new Movie
+        {
+            Id = Guid.NewGuid(),
+            Title = "Test Movie2",
+            YearOfRelease = 2015
+        };
+
+        _dbConnection.Execute(@"
+INSERT INTO Movies(Id, Title, YearOfRelease)
+VALUES (@Id, @Title, @YearOfRelease)", movie);
+
+        _dbConnection.Execute("DELETE FROM Movies WHERE Id = @Id", movie);
+
+        return movie;
     }
 
-    [Benchmark]
-    public Movie? Dapper_GetById ()
-    {
-        return _dbConnection.QuerySingleOrDefault<Movie>("SELECT * FROM Movies WHERE Id = @Id LIMIT 1",
-            new { _testMovie.Id });
-    }
 }
