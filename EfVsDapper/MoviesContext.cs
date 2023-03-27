@@ -8,7 +8,7 @@ public class MoviesContext : DbContext
     
     protected override void OnConfiguring (DbContextOptionsBuilder optionsBuilder)
     {
-        var moviesDbPath = Path.Combine (Environment.CurrentDirectory, "movies.db");
+        var moviesDbPath = Path.Combine (@"D:\DevSite\DEMO\Benchmarks\EfVsDapper\movies.db");
         optionsBuilder.UseSqlite($"Data Source={moviesDbPath}");
     }
 }

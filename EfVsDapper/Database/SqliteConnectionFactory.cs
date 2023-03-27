@@ -1,11 +1,12 @@
-﻿using System.Data.Common;
-using System.Data.Entity.Infrastructure;
+﻿using System.Data;
+using System.Data.Common;
+using System.Data.SQLite.EF6;
 using Dapper;
 using Microsoft.Data.Sqlite;
 
 namespace EfVsDapper.Database;
 
-public class SqliteConnectionFactory : IDbConnectionFactory
+public class SqliteConnectionFactory:DbProviderFactory
 {
     private readonly string _connectionString;
 
@@ -17,11 +18,11 @@ public class SqliteConnectionFactory : IDbConnectionFactory
         
         _connectionString = connectionString;
     }
-    
-    public DbConnection CreateConnection (string nameOrConnectionString)
+
+    public async Task<IDbConnection> CreateConnectionAsync ()
     {
         var connection = new SqliteConnection(_connectionString);
-        connection.Open();
+        await connection.OpenAsync();
         
         return connection;
     }

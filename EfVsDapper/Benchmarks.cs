@@ -1,9 +1,7 @@
 ﻿using System.Data;
-using System.Data.Entity;
 using BenchmarkDotNet.Attributes;
 using Dapper;
 using EfVsDapper.Database;
-using Microsoft.Data.Sqlite;
 
 namespace EfVsDapper;
 
@@ -20,10 +18,10 @@ public class Benchmarks
     public async Task Setup ()
     {
         _random = new Random(420);
-        var dbConnectionFactory = new SqliteConnectionFactory("");
+        var dbConnectionFactory = new SqliteConnectionFactory(@"Data Source=D:\DevSite\DEMO\Benchmarks\EfVsDapper\movies.db");
+        _dbConnection = await dbConnectionFactory.CreateConnectionAsync();
 
         _movieGenerator = new MovieGenerator(_dbConnection, _random);
-
         await _movieGenerator.GenerateMovies(100);
 
         _testMovie = new Movie
@@ -46,29 +44,29 @@ VALUES (@Id, @Title, @YearOfRelease)", _testMovie);
         await _movieGenerator.CleanupMovies();
         await _dbConnection.ExecuteAsync("DELETE FROM Movies WHERE Id = @Id", _testMovie);
     }
-
+    
     [Benchmark]
-    public async Task<Movie?> EF_Find ()
+    public Movie? EF_Find ()
     {
-        return await _moviesContext.Movies.FindAsync(_testMovie.Id);
+        return _moviesContext.Movies.Find(_testMovie.Id);
+    }
+    
+    [Benchmark]
+    public Movie? EF_Single ()
+    {
+        return _moviesContext.Movies.SingleOrDefault(x => x.Id == _testMovie.Id);
     }
 
     [Benchmark]
-    public async Task<Movie?> EF_Single ()
+    public Movie? EF_First ()
     {
-        return await _moviesContext.Movies.SingleOrDefaultAsync(x => x.Id == _testMovie.Id);
+        return _moviesContext.Movies.FirstOrDefault(x => x.Id == _testMovie.Id);
     }
 
     [Benchmark]
-    public async Task<Movie?> EF_First ()
+    public Movie? Dapper_GetById ()
     {
-        return await _moviesContext.Movies.FirstOrDefaultAsync(x => x.Id == _testMovie.Id);
-    }
-
-    [Benchmark]
-    public async Task<Movie> Dapper_GetById ()
-    {
-        return await _dbConnection.QuerySingleOrDefaultAsync<Movie>("SELECT * FROM Movies WHERE Id = @Id LIMIT 1",
+        return _dbConnection.QuerySingleOrDefault<Movie>("SELECT * FROM Movies WHERE Id = @Id LIMIT 1",
             new { _testMovie.Id });
     }
 }

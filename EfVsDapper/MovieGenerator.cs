@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using Bogus;
+using Dapper;
 
 namespace EfVsDapper;
 
@@ -7,7 +8,7 @@ public class MovieGenerator
 {
     private readonly IDbConnection _dbConnection;
     private readonly List<Guid> ids = new ();
-    
+
     private readonly Faker<Movie> _movieGenerator = new Faker<Movie>()
         .RuleFor(m => m.Id, f => f.Random.Guid())
         .RuleFor(m => m.Title, f => f.Name.FullName())
@@ -25,12 +26,15 @@ public class MovieGenerator
         var generateMovies = _movieGenerator.Generate(count);
         foreach (var generateMovie in generateMovies)
         {
-            
+            await _dbConnection.ExecuteAsync(@"
+INSERT INTO Movies(Id, Title, YearOfRelease)
+VALUES (@Id, @Title, @YearOfRelease)", generateMovie
+            );
         }
     }
 
     public async Task CleanupMovies ()
     {
-        throw new NotImplementedException();
+        await _dbConnection.ExecuteAsync("DELETE FROM Movies");
     }
 }
