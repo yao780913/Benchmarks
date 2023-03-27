@@ -71,42 +71,77 @@ VALUES (@Id, @Title, @YearOfRelease)", _testMovie);
     //         new { _testMovie.Id });
     // }
 
+//     [Benchmark]
+//     public Movie EF_Add_Delete ()
+//     {
+//         var movie = new Movie
+//         {
+//             Id = Guid.NewGuid(),
+//             Title = "Test Movie2",
+//             YearOfRelease = 2015
+//         };
+//
+//         _moviesContext.Movies.Add(movie);
+//         _moviesContext.SaveChanges();
+//
+//         _moviesContext.Movies.Remove(movie);
+//         _moviesContext.SaveChanges();
+//
+//         return movie;
+//     }
+//
+//     [Benchmark]
+//     public Movie Dapper_Add_Delete ()
+//     {
+//         var movie = new Movie
+//         {
+//             Id = Guid.NewGuid(),
+//             Title = "Test Movie2",
+//             YearOfRelease = 2015
+//         };
+//
+//         _dbConnection.Execute(@"
+// INSERT INTO Movies(Id, Title, YearOfRelease)
+// VALUES (@Id, @Title, @YearOfRelease)", movie);
+//
+//         _dbConnection.Execute("DELETE FROM Movies WHERE Id = @Id", movie);
+//
+//         return movie;
+//     }
+
+//     [Benchmark]
+//     public Movie EF_Update ()
+//     {
+//         _testMovie.YearOfRelease = _random.Next();
+//         _moviesContext.Movies.Update(_testMovie);
+//         _moviesContext.SaveChanges();
+//
+//         return _testMovie;
+//     }
+//     
+//     [Benchmark]
+//     public Movie Dapper_Update ()
+//     {
+//         _testMovie.YearOfRelease = _random.Next();
+//         _dbConnection.Execute(@"
+// UPDATE Movies
+// SET YearOfRelease = @YearOfRelease
+// WHERE Id = @Id", _testMovie);
+//
+//         return _testMovie;
+//     }
+
     [Benchmark]
-    public Movie EF_Add_Delete ()
+    public List<Movie> EF_Filter ()
     {
-        var movie = new Movie
-        {
-            Id = Guid.NewGuid(),
-            Title = "Test Movie2",
-            YearOfRelease = 2015
-        };
-
-        _moviesContext.Movies.Add(movie);
-        _moviesContext.SaveChanges();
-
-        _moviesContext.Movies.Remove(movie);
-        _moviesContext.SaveChanges();
-
-        return movie;
+        var movies = _moviesContext.Movies.Where(m => m.YearOfRelease == 1993);
+        return movies.ToList();
     }
-
+    
     [Benchmark]
-    public Movie Dapper_Add_Delete ()
+    public List<Movie> Dapper_Filter ()
     {
-        var movie = new Movie
-        {
-            Id = Guid.NewGuid(),
-            Title = "Test Movie2",
-            YearOfRelease = 2015
-        };
-
-        _dbConnection.Execute(@"
-INSERT INTO Movies(Id, Title, YearOfRelease)
-VALUES (@Id, @Title, @YearOfRelease)", movie);
-
-        _dbConnection.Execute("DELETE FROM Movies WHERE Id = @Id", movie);
-
-        return movie;
+        var movies = _dbConnection.Query<Movie>("SELECT * FROM Movies WHERE YearOfRelease = 1993");
+        return movies.ToList();
     }
-
 }
