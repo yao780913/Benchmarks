@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqPerformance.Simple", "L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmptyEnumerable", "EmptyEnumerable\EmptyEnumerable.csproj", "{1055645A-69B3-4A2F-8087-01B49E731599}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfVsDapper", "EfVsDapper\EfVsDapper.csproj", "{0E22099C-0D20-4DC1-B1E2-877A368256FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{1055645A-69B3-4A2F-8087-01B49E731599}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1055645A-69B3-4A2F-8087-01B49E731599}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1055645A-69B3-4A2F-8087-01B49E731599}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E22099C-0D20-4DC1-B1E2-877A368256FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E22099C-0D20-4DC1-B1E2-877A368256FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E22099C-0D20-4DC1-B1E2-877A368256FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E22099C-0D20-4DC1-B1E2-877A368256FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
