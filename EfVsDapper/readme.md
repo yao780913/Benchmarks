@@ -1,5 +1,5 @@
-## [Entity Framework Core vs Dapper Performance in 2023](https://www.youtube.com/watch?v=Q4LtKa_HTHU)
-Nick Chapsas - YT - Entity Framework Core vs Dapper Performance in 2023
+# Entity Framework Core vs Dapper Performance in 2023
+[Entity Framework Core vs Dapper Performance in 2023]((https://www.youtube.com/watch?v=Q4LtKa_HTHU))
 
 ## EF_Find , EF_Single , EF_First and Dapper_GetById
 ``` ini
@@ -49,5 +49,5 @@ BenchmarkDotNet=v0.13.2, OS=Windows 11 (10.0.22621.1413)
 
 <p style="color: red;">The provider for the source IQueryable doesn't implement IDbAsyncQueryProvider. Only providers that implement IDbAsyncQueryProvider can be used for Entity Framework asynchronous operations.</p>
 
-所以以下測試案例都不使用非同步語法
+所以以上測試案例都不使用非同步語法
 

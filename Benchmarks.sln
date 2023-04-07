@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmptyEnumerable", "EmptyEnu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfVsDapper", "EfVsDapper\EfVsDapper.csproj", "{0E22099C-0D20-4DC1-B1E2-877A368256FB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OptimsingEfCore", "OptimsingEfCore\OptimsingEfCore.csproj", "{A85FC176-72F3-4074-AEBB-398C6084E1CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{0E22099C-0D20-4DC1-B1E2-877A368256FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E22099C-0D20-4DC1-B1E2-877A368256FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E22099C-0D20-4DC1-B1E2-877A368256FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A85FC176-72F3-4074-AEBB-398C6084E1CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A85FC176-72F3-4074-AEBB-398C6084E1CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A85FC176-72F3-4074-AEBB-398C6084E1CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A85FC176-72F3-4074-AEBB-398C6084E1CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
