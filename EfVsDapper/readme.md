@@ -1,4 +1,5 @@
-## [Nick Chapsas - YT - Entity Framework Core vs Dapper Performance in 2023](https://www.youtube.com/watch?v=Q4LtKa_HTHU)
+## [Entity Framework Core vs Dapper Performance in 2023](https://www.youtube.com/watch?v=Q4LtKa_HTHU)
+Nick Chapsas - YT - Entity Framework Core vs Dapper Performance in 2023
 
 ## EF_Find , EF_Single , EF_First and Dapper_GetById
 ``` ini

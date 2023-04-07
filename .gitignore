@@ -363,3 +363,6 @@ MigrationBackup/
 FodyWeavers.xsd
 
 /OAuth20.Example/Logs
+
+*.db-shm
+*.db-wal
