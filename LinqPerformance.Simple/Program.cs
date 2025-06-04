@@ -9,7 +9,7 @@ namespace LinqPerformance.Simple
         static void Main(string[] args)
         {
             Randomizer.Seed = new Random(420);
-            BenchmarkRunner.Run<Benchmarks2>(); 
+            BenchmarkRunner.Run<Benchmarks3>(); 
         }
     }
 }
