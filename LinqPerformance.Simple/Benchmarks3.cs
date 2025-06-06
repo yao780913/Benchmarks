@@ -8,7 +8,7 @@ namespace LinqPerformance.Simple;
 [MemoryDiagnoser]
 public class Benchmarks3
 {
-    [Params(1_000)]
+    [Params(1_000, 5_000, 10_000)]
     public int Size { get; set; }
 
     private List<int> _list;
